@@ -8,9 +8,9 @@ if (!empty($_POST['first_name']) && !empty($_POST['last_name']) && !empty($_POST
     $created = date('d.m.y H:i:s');
     include('setting.php');
     $patch = mysqli_prepare($mysqli, "INSERT INTO `postavshiki` (first_name, last_name, company, city, country, created) VALUES (?, ?, ?, ?, ?, ?)");
-    mysqli_patch_bind_param($patch, 'ssssss', $first_name, $last_name, $company, $city, $country, $created);
-    mysqli_patch_execute($patch);
-    mysqli_patch_close($patch);
+    mysqli_stmt_bind_param($patch, 'ssssss', $first_name, $last_name, $company, $city, $country, $created);
+    mysqli_stmt_execute($patch);
+    mysqli_stmt_close($patch);
     mysqli_close($mysqli);
     $true = ['success' => true];
     echo json_encode($true);
